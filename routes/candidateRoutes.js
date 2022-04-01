@@ -174,19 +174,25 @@ const multerInstance = require('../multer')
 
 /**
  * @swagger
- * /candidateVerification:
- *   get:
- *     summary: Returns the list of all candidates Verified
+ * /candidateVerification/add:
+ *   post:
+ *     summary: creates a new verification
  *     tags: [CandidateVerification]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/candidateVerification'
  *     responses:
  *       200:
- *         description: The list of all candidates verified
+ *         description: The Candidate was successfully verified
  *         content:
  *           application/json:
  *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/candidateVerification'
+ *               $ref: '#/components/schemas/candidateVerification'
+ *       500:
+ *         description: Some server error
  */
   var storage = multer.diskStorage({
     destination: (req, file, cb) => {
