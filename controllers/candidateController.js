@@ -15,7 +15,7 @@ exports.createCandidate = async (req, res) => {
 
             price: req.body.price,
             image: req.file.path,
-            fil: req.file.path,
+           
             
         }
         let candidates = await candidateRepository.createCandidate({

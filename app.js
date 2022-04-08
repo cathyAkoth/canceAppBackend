@@ -106,7 +106,7 @@ app.use('/employer' , employerIndividualRoutes)
  app.use('/candidateVerification', candidateRoutes)
  app.use('/shortlist' , shortlistRoutes)
  
- 
+ app.set('view engine', 'ejs')
 
 
 // spin up the server 
