@@ -6,13 +6,13 @@ exports.roles = (function() {
     .readOwn("profile")
     .updateOwn("profile")
 
-  ac.grant("supervisor")
+  ac.grant("hospital")
     .extend("basic")
     .readAny("profile")
 
   ac.grant("admin")
     .extend("basic")
-    .extend("supervisor")
+    .extend("hospital")
     .updateAny("profile")
     .deleteAny("profile")
 

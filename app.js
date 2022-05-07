@@ -21,39 +21,8 @@ const swaggerJsDoc = require("swagger-jsdoc");
 
 const routes = require('./routes/route.js');
 
-const agentRoutes = require('./routes/agentRoutes');
-const employerIndividualRoutes = require('./routes/employerIndividualRoutes');
-const employerCompanyRoutes  = require('./routes/employerCompanyRoutes');
-const candidateRoutes = require('./routes/candidateRoutes');
-const shortlistRoutes = require('./routes/shortlistRoute');
-
-
-
-
-
 const { PORT } = process.env 
 const { WELCOME_MESSAGE, DATABASE_URL } = process.env
-
-const options = {
-	definition: {
-		openapi: "3.0.0",
-		info: {
-			title: "API",
-			version: "1.0.0",
-			description: " API",
-		},
-		servers: [
-			{
-				url: "http://localhost:5000",
-			},
-		],
-	},
-	apis: ["./routes/*.js"],
-};
-
-const specs = swaggerJsDoc(options);
-
-
 
 
 // declare app isntance
@@ -65,11 +34,7 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true }))
 
-// Middleware for serving static files.
-app.use(express.static('public'));
 
- app.use('/public/files', express.static(__dirname + '/public/files'));
-app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
 
 //  routes to app
@@ -97,16 +62,10 @@ app.use(async (req, res, next) => {
     }
   });
   
+  // use routes
   app.use('/', routes);
 
-app.use('/agentVerification', agentRoutes)
 
-app.use('/employer' , employerIndividualRoutes)
- app.use('/employer/company' , employerCompanyRoutes)
- app.use('/candidateVerification', candidateRoutes)
- app.use('/shortlist' , shortlistRoutes)
- 
- app.set('view engine', 'ejs')
 
 
 // spin up the server 
