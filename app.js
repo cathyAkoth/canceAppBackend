@@ -20,6 +20,7 @@ const swaggerJsDoc = require("swagger-jsdoc");
 // route imports
 
 const routes = require('./routes/route.js');
+const outreachRoutes = require('./routes/outreachRoutes');
 
 const { PORT } = process.env 
 const { WELCOME_MESSAGE, DATABASE_URL } = process.env
@@ -64,6 +65,7 @@ app.use(async (req, res, next) => {
   
   // use routes
   app.use('/', routes);
+  app.use('/outreach', outreachRoutes)
 
 
 
